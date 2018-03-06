@@ -7,7 +7,8 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    tip: '点我有惊喜'
   },
   //事件处理函数
   bindViewTap: function() {
@@ -42,6 +43,14 @@ Page({
         }
       })
     }
+    // console.log(app.data.motto);
+    // console.log(app.globalData);
+    // console.log(app.globalData);
+    
+    this.setData({
+      motto:'你好'
+    })
+
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -50,5 +59,9 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+
+  clickMe: function () {
+    this.setData({ tip:'骗你的，你真相信呀！'})
   }
 })

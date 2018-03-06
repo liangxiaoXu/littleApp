@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
 	"appid": "wxf0fa861849b5c92c",
-	"projectname": "firstApp",
+	"projectname": "littleApp",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
