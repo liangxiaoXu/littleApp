@@ -1,0 +1,5 @@
+<view class="container">
+  <button bindtap='get_location'>获取当前坐标</button>
+  <button bindtap='get_location2'>获取当前坐标，并打开地图</button>
+  <text>{{locationStr}}</text>
+</view>

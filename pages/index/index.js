@@ -8,7 +8,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    tip: '点我有惊喜'
+    tip: '获取位置',
+    content:''
   },
   //事件处理函数
   bindViewTap: function() {
@@ -48,7 +49,8 @@ Page({
     // console.log(app.globalData);
     
     this.setData({
-      motto:'你好'
+      motto: '你好',
+      content: app.globalData.userInfo
     })
 
   },
@@ -62,6 +64,83 @@ Page({
   },
 
   clickMe: function () {
-    this.setData({ tip:'骗你的，你真相信呀！'})
+    wx.navigateTo({
+      url: '../location/location',
+    })
+  },
+  // 扫码功能
+  scanQr:function(){
+    wx.scanCode({
+      //只允许从相机选取图片
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res)
+        console.log(res.result)
+
+        //跳转到扫描结果页面
+        wx.navigateTo({
+          url: '../scanResult/scanResult?content=' + res.result
+        })
+
+      }
+    })
+  },
+  //发起请求
+  req:function(){
+    wx.request({
+      url: 'http://localhost:9081/trade/order/goods_order_view.do', 
+      data :{
+        order_sn: '311494677',
+        user_id: '1816'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data)
+      }
+    })
+  },
+  //支付
+  wx_pay:function(){
+    wx.requestPayment({
+      'timeStamp': '1520940936681',
+      'nonceStr': 'gn0zrn0kwaq5hgs',
+      'package': 'wx20180313201632c7e6fd26cb0215203398',
+      'signType': 'MD5',
+      'paySign': '37DC45596F1E4D8D6A4B8F3D36FA2D4A',
+      'success': function (res) {
+        console.log('success' + res)
+      },
+      'fail': function (res) {
+        console.log('fail' + res)
+        console.log('fail' + res.errMsg)
+      }
+    })
+  },
+
+  //收货地址
+  receive_addr : function(){
+
+    wx.chooseAddress({
+      success: function (res) {
+
+        console.log(res.userName)
+        console.log(res.postalCode)
+        console.log(res.provinceName)
+        console.log(res.cityName)
+        console.log(res.countyName)
+        console.log(res.detailInfo)
+        console.log(res.nationalCode)
+        console.log(res.telNumber)
+
+          wx.showToast({
+            title: res.detailInfo,
+            icon: 'succes',
+            duration: 1000,
+            mask: true
+          })
+      }
+    })
   }
 })

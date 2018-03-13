@@ -1,0 +1,5 @@
+
+<view>
+<text>您扫描到的内容为：</text>
+<text>{{content}}</text>
+</view>

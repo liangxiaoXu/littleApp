@@ -8,7 +8,11 @@
     </block>
   </view>
   <view class="usermotto">
+      <button bindtap='req' style='scanQr_style'>发起请求</button>
+      <button bindtap='scanQr' style='scanQr_style'>扫一扫</button>
     <!-- <text class="user-motto">{{motto}}</text> -->
     <button bindtap='clickMe' class="btn_style">{{tip}}</button>
+      <button bindtap='wx_pay' style='scanQr_style'>支付</button>
+      <button bindtap='receive_addr' style='scanQr_style'>收货地址</button>
   </view>
 </view>

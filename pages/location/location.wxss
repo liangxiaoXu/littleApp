@@ -1,0 +1,4 @@
+/* pages/location/location.wxss */
+.usermotto {
+  margin-top: 100px;
+}
